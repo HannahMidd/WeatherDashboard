@@ -1,0 +1,18 @@
+:root {
+  --color-1: rgb(26, 26, 100);
+  --color-2: rgb(79, 105, 129);
+}
+
+
+header {
+  color: var(--color-1);
+  background-color: var(--color-2);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.CitySearch {
+  padding: 20px;
+  color: var(--color-1);
+}
