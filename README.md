@@ -1,8 +1,8 @@
-# WorkDayScheduler
+# WeatherDashboard
 
 ## Description
 
-The Coding Quiz game can be accessed at the following URL: https://hannahmidd.github.io/CodingQuiz/
+The Weather Dashboard can be accessed at the following URL: https://hannahmidd.github.io/CodingQuiz/
 
 This coding quiz will allow a users to test their coding knowledge by working through a set of coding questions. Users will have 90 deconds to complete the quiz... but be careful, wrong answers deduct 15 seconds from the clock! 
 
