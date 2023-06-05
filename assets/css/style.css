@@ -1,12 +1,17 @@
 :root {
-  --color-1: rgb(26, 26, 100);
-  --color-2: rgb(79, 105, 129);
+  --color-1: #48cae4;
+  --color-2: #00b4d8;
+  --color-3: #0096c7;
+  --color-4: #0077b6;
+  --color-5: #023e8a;
+  --color-6: #03045e;
+
 }
 
 
 header {
-  color: var(--color-1);
-  background-color: var(--color-2);
+  color: var(--color-6);
+  background: linear-gradient(to bottom, #00b4d8, #023e8a);
   padding: 15px;
   display: flex;
   justify-content: center;
@@ -14,5 +19,10 @@ header {
 
 .CitySearch {
   padding: 20px;
-  color: var(--color-1);
+  color: var(--color-6);
+}
+
+form {
+  display: flex;
+  display: block;
 }
