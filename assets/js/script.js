@@ -1,8 +1,9 @@
 //------------------------ Global Variables to be used ---------------------
 const weatherApiKey = "01c2f043e94a1460b1f6d351b9f98ce6";
 const weatherMainURL = "https://api.openweathermap.org";
-const searchForm = document.querySelector("#search-form");
-const searchInput = document.querySelector("#search-input");
+const searchForm = document.querySelector("#CitySearch");
+// Prev search-form
+const searchInput = document.querySelector("#search-input"); 
 const todayContainer = document.querySelector("#today");
 const forecastContainer = document.querySelector("#forecast");
 const searchHistoryContainer = document.querySelector("#history");
@@ -35,4 +36,15 @@ function renderSearchHistory() {
     btn.textContent = searchHistory[i];
     searchHistoryContainer.append(btn);
   }
+}
+
+// Store search history in local storage
+function appendToHistory(search) {
+  if (searchHistory.indexOf(search) !== -1) {
+    return;
+  }
+  searchHistory.push(search);
+
+  localStorage.setItem("search-history", JSON.stringify(searchHistory));
+  renderSearchHistory();
 }

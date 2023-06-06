@@ -19,7 +19,7 @@ header {
 
 /* Applies to "Searcg for a City: text */
 .CitySearch {
-  padding: 20px;
+  padding: 5px;
   color: var(--color-6);
 }
 
@@ -31,4 +31,6 @@ form {
 }
 button {
   margin-top: 10px;
+  width: 200px;
+  background: linear-gradient(to bottom, #00b4d8, #023e8a);
 }
