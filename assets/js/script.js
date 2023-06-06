@@ -16,29 +16,28 @@ function weatherNow(lat, lon) {
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${weatherApiKey}`
   )
     .then((response) => response.json())
-   .then((data) => {
-  console.log("Woooo! We have weather data!", data);
-  let currentWeatherData = {
-    city: data.name,
-    currentTemp: data.main.temp,
-    maxDayTemp: data.main.temp_max,
-    minDayTemp: data.main.temp_min,
-    humidity: data.main.humidity,
-    weatherDesc: data.weather[0].description,
-    weatherIcon: data.weather[0].icon,
-    wind: data.wind.speed,
-  };
-  currentWeatherText(currentWeatherData);
-  
-  // Store location data to local storage
-  localStorage.setItem(data.name, JSON.stringify({ lat: lat, lon: lon }));
-})
+    .then((data) => {
+      console.log("Woooo! We have weather data!", data);
+      let currentWeatherData = {
+        city: data.name,
+        currentTemp: data.main.temp,
+        maxDayTemp: data.main.temp_max,
+        minDayTemp: data.main.temp_min,
+        humidity: data.main.humidity,
+        weatherDesc: data.weather[0].description,
+        weatherIcon: data.weather[0].icon,
+        wind: data.wind.speed,
+      };
+      currentWeatherText(currentWeatherData);
 
-// Grab current weather & future 5-day weather
-weatherNow(data.lat, data.lon);
-weatherForecast(data.lat, data.lon);
+      // Store location data to local storage
+      localStorage.setItem(data.name, JSON.stringify({ lat: lat, lon: lon }));
 
-
+      // Grab current weather & future 5-day weather
+      weatherNow(data.lat, data.lon);
+      weatherForecast(data.lat, data.lon);
+    });
+}
 
 // gets current time, sets data on page
 function currentWeatherText(weatherData) {
