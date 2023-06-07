@@ -4,7 +4,7 @@
 
 The Weather Dashboard can be accessed at the following URL: https://hannahmidd.github.io/CodingQuiz/
 
-This coding quiz will allow a users to test their coding knowledge by working through a set of coding questions. Users will have 90 deconds to complete the quiz... but be careful, wrong answers deduct 15 seconds from the clock! 
+This weather application will allow users to view the current weather in their desired location, along with the 5 day forecast for temperature, wind and humidity. 
 
 
 
@@ -14,15 +14,10 @@ N/A
 
 ## Usage
 
-Click "Start Quiz" to begin the game. 
-![Alt Text](./assets/CodingQuizScreenshot.png)
-Read the question and click on the correct answer. 
-![Alt Text](./assets/questionSample.png)
-You will notice feedback ("Correct!" or "Wrong!") after each question is answered. When you get to the end of the game, or run out of time, your final score will appear. 
+Under "Search for a City:", simply type in your city name and hit "Show me the weather!" to see your current, as well as 5 day weather displayed. You will be able to access the following data points: temperature, wind and humidity. 
+![Alt Text](./assets/appscreenshot.png)
 
-Add your initials where prompted, and click "submit" to add your score to the Highscores page. Come back later to play again, and notice that your previous scores have been stored locally for you! 
-
-Enjoy the game!
+May sunshine be in your forecast! 
 
 
 
