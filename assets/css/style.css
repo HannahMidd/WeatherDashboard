@@ -13,16 +13,16 @@ header {
   color: var(--color-7);
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
   padding: 15px;
+  height: 110px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-/* Applies to "Searcg for a City: text */
-.CitySearch {
+/* Applies to "Search for a City: text */
+#CitySearchTitle {
   padding: 5px;
-  color: var(--color-7);
-  display: flex;
-  justify-content: center;
+
 }
 
 /* Applies to "Search for a City:" form */
@@ -32,6 +32,8 @@ form {
   width: 200px;
   
 }
+
+/* Applies to all buttons */
 button {
   margin-top: 10px;
   width: 200px;
@@ -39,19 +41,26 @@ button {
   color: var(--color-7);
 }
 
+button:hover {
+  background: linear-gradient(to bottom, #023e8a, #00b4d8);
+  color: var(--color-7);
+}
+
+/* Applies to city in the large top of screen */
 #CitySearch {
-  background: linear-gradient(to bottom, #00b4d8, #023e8a);
+  background-color: var(--color-3);
   width: 600px;
   height: 75px;
   display: flex;
   justify-content: center;
-  color: var(--color-7);
-
-  
+  align-items: center;
+  color: var(--color-7); 
+  border: solid 2px black;
 }
 
+/* Applies to the weather now section */
 #today {
-  background: linear-gradient(to bottom, #00b4d8, #023e8a);
+  background-color: var(--color-3);
   color: var(--color-7);
   border: solid 2px black;
   padding: 10px;
@@ -59,9 +68,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center !important;
-
 }
 
+
+/* Applies to the entire forecast box */
 .ForecastBox {
   position: absolute;
   top: -65px;
@@ -73,22 +83,26 @@ button {
   padding: 10px;
 }
 
+/* Makes Search and Result box inline */
 .pageLayout {
   display: inline;
 }
 
+/* Applies to all 5 weather cards */
 .CardContainer {
   display: flex;
   flex-direction: row;
  justify-content: center;
 }
 
+/* Applies to each individual weather card */
 .card {
   border: solid 2px black;
   width: 180px;
   margin-top: 10px;
 }
 
+/* Applies to the entire searching for city section */
 .SearchAndHistorySection {
   border: solid 2px black;
   padding: 10px;
@@ -98,7 +112,7 @@ button {
   width: 270px;
 }
 
-/* 5 Day forecast style */
+/* 5 Day forecast style by card */
 #day1 {
   background-color: var(--color-1);
   color: whitesmoke;

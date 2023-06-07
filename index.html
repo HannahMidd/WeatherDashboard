@@ -17,37 +17,41 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
-<header>
-  <h1>Weather Dashboard</h1>
-</header>
-
-
-
-
 <body>
 
+  <header>
+    <h1>Weather Dashboard</h1>
+  </header>
+
+
+
+
+<main>
   <div class="pageLayout">
     <!-- City Search and button showed on URL load -->
-    
-      <div class="container-fluid" style="max-width: 1400px">
-        <div class="row">
-          <aside class="SearchAndHistorySection col-lg-3 pb-3">
-            <h2 id="CitySearchTitle" class="mt-1 h3 form-label">
-              Search for a City:
-            </h2>
-            <form id="search-form" class="form">
-              <div class="form-inline form-group">
-                <container class="input-group">
-                  <input class="form-input weather-search" type="text" id="search-input" placeholder="Vero Beach"
-                    aria-labelledby="form-heading" aria-controls="today forecast" />
-                  <button type="submit" class="btn search-button" id="citySearchBtn">
-                    Show me the weather!
-                  </button>
-                  <h2 id="RecentSearchTitle" class="mt-1 h3 form-label">
-                    Recent Searches:
-                  </h2>
-                  <button id="history" class="btn btn-primary text-start history-btn"></button>
-               
+
+    <div class="container-fluid" style="max-width: 1400px">
+      <div class="row">
+        <aside class="SearchAndHistorySection col-lg-3 pb-3">
+          <h2 id="citySearchTitle" class="mt-1 h3 form-label">
+            Search for a City:
+          </h2>
+          <form id="search-form" class="form">
+            <div class="form-inline form-group">
+              <container class="input-group">
+                <input class="form-input weather-search" type="text" id="search-input" placeholder="Vero Beach"
+                  aria-labelledby="form-heading" aria-controls="today forecast" />
+                <button type="submit" class="btn search-button" id="citySearchBtn">
+                  Show me the weather!
+                </button>
+                <h2 id="RecentSearchTitle" class="mt-1 h3 form-label">
+                  Recent Searches:
+                </h2>
+                <button id="history" class="btn btn-primary text-start history-btn"></button>
+
+                <h1 class="mt-5 mb-3 fs-4 text-center text-white">Recent Searches:</h1>
+                <div class="list-group mx-3 gap-2"></div>
+
 
                 <!--  -------------------Weather Display Section --------------------------------------- -->
                 <container class="ForecastBox">
@@ -55,6 +59,7 @@
                   <h1 id="CitySearch">Vero Beach</h1>
                   <h3>Current Weather and 5-day Forecast</h3>
                   <div id="today">
+                    <p>Day</p>
                     <p>Temp: 80F</p>
                     <p>Wind: 15MPH</p>
                     <p>Humidity: 80%</p>
@@ -91,26 +96,27 @@
 
                   </container>
                 </container>
-              </div>
+            </div>
+</main>
+            <!-- Bootstap -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+              integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+              crossorigin="anonymous"></script>
+            <!-- JQuery -->
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <!-- DayJS CDN and timezone codes -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+              integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+              crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js"
+              integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w=="
+              crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js"
+              integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg=="
+              crossorigin="anonymous"></script>
+            <!-- Script.JS -->
+            <script src="./assets/js/script.js"></script>
 
-              <!-- Bootstap -->
-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-                crossorigin="anonymous"></script>
-              <!-- JQuery -->
-              <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-              <!-- DayJS CDN and timezone codes -->
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
-                integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
-                crossorigin="anonymous"></script>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js"
-                integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w=="
-                crossorigin="anonymous"></script>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js"
-                integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg=="
-                crossorigin="anonymous"></script>
-              <!-- Script.JS -->
-              <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

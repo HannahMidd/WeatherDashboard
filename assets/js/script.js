@@ -4,7 +4,7 @@ const searchInput = document.querySelector("#search-input");
 const weatherMainURL = "https://api.openweathermap.org";
 
 const citySearchBtn = document.querySelector("#citySearchBtn");
-const citySearchTitle = document.querySelector("#citySearch");
+const searchedCity = document.querySelector("#search-input");
 const today = document.querySelector("#today");
 const todayWeather = today.children[0];
 const forecastContainer = document.querySelector("#forecast");
@@ -23,7 +23,6 @@ function weatherNow(lat, lon) {
         city: data.name,
         currentTemp: data.main.temp,
         humidity: data.main.humidity,
-        weatherDesc: data.weather[0].description,
         weatherIcon: data.weather[0].icon,
         wind: data.wind.speed,
       };
@@ -44,7 +43,7 @@ function currentWeatherText(weatherData) {
   console.log(weatherData);
 
   //Show City name & current day
-  citySearchTitle.textContent = weatherData.city;
+  searchedCity.textContent = weatherData.city;
   let today = dayjs().format("DD MMM, YYYY");
   let currentHour = dayjs().format("h A");
   todayWeather.textContent = `Current Weather Today, ${today}, at ${currentHour}`;
@@ -76,7 +75,7 @@ function currentWeatherCard(weatherData) {
   today.children[0].appendChild(weatherContainer);
 }
 
-// gets 5 day forecast
+// Fetch our 5 day forecast
 function weatherForecast(lat, lon) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${weatherApiKey}`
@@ -90,7 +89,6 @@ function weatherForecast(lat, lon) {
           time: dayjs(data.list[2].dt_txt).format("DD MMM, YYYY"),
           temp: data.list[2].main.temp, // in F
           humidity: data.list[2].main.humidity,
-          weatherDesc: data.list[2].weather[0].description,
           weatherIcon: data.list[2].weather[0].icon,
           wind: data.list[2].wind.speed, //mph
         },
@@ -98,7 +96,6 @@ function weatherForecast(lat, lon) {
           time: dayjs(data.list[10].dt_txt).format("DD MMM, YYYY"),
           temp: data.list[10].main.temp, // in F
           humidity: data.list[10].main.humidity,
-          weatherDesc: data.list[10].weather[0].description,
           weatherIcon: data.list[10].weather[0].icon,
           wind: data.list[10].wind.speed, //mph
         },
@@ -106,7 +103,6 @@ function weatherForecast(lat, lon) {
           time: dayjs(data.list[18].dt_txt).format("DD MMM, YYYY"),
           temp: data.list[18].main.temp, // in F
           humidity: data.list[18].main.humidity,
-          weatherDesc: data.list[18].weather[0].description,
           weatherIcon: data.list[18].weather[0].icon,
           wind: data.list[18].wind.speed, //mph
         },
@@ -114,7 +110,6 @@ function weatherForecast(lat, lon) {
           time: dayjs(data.list[26].dt_txt).format("DD MMM, YYYY"),
           temp: data.list[26].main.temp, // in F
           humidity: data.list[26].main.humidity,
-          weatherDesc: data.list[26].weather[0].description,
           weatherIcon: data.list[26].weather[0].icon,
           wind: data.list[26].wind.speed, //mph
         },
@@ -122,7 +117,6 @@ function weatherForecast(lat, lon) {
           time: dayjs(data.list[34].dt_txt).format("DD MMM, YYYY"),
           temp: data.list[34].main.temp, // in F
           humidity: data.list[34].main.humidity,
-          weatherDesc: data.list[34].weather[0].description,
           weatherIcon: data.list[34].weather[0].icon,
           wind: data.list[34].wind.speed, //mph
         },
@@ -133,9 +127,39 @@ function weatherForecast(lat, lon) {
     });
 }
 
-// forecast card
+function getStorage() {
+  for (i = 0; i < localStorage.length; i++) {
+    let savedCity = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    let locationBtnEl = document.createElement("button");
+    locationBtnEl.setAttribute(
+      "class",
+      "btn btn-primary text-start history-btn"
+    );
+    locationBtnEl.textContent = savedCity.city;
+    searchHistoryContainer.appendChild(locationBtnEl);
+    locationBtnEl.addEventListener("click", () => {
+      weatherNow(savedCity.lat, savedCity.lon);
+      weatherForecast(savedCity.lat, savedCity.lon);
+    });
+  }
+}
+
+function savedWeather() {
+  let savedCity = JSON.parse(localStorage.getItem("Vero Beach"));
+  console.log("Default City Location:");
+  console.log(savedCity);
+  weatherNow(savedCity.lat, savedCity.lon);
+  weatherForecast(savedCity.lat, savedCity.lon);
+}
+
+
+// Calling the functions
+savedWeather();
+getStorage();
+citySearchBtn.addEventListener("click", getLocation);
+
+// Apply the data to the cards!!!
 function forecastWeatherCard(weatherData) {
-  // Create & append new data to current weather box:
   let weatherContainer = document.createElement("div");
   let weatherTitle = document.createElement("p");
   let tempTitle = document.createElement("p");
@@ -162,32 +186,3 @@ function forecastWeatherCard(weatherData) {
     weatherContainer
   );
 }
-
-function getStorage() {
-  for (i = 0; i < localStorage.length; i++) {
-    let storedCity = JSON.parse(localStorage.getItem(localStorage.key(i)));
-    let locationBtnEl = document.createElement("button");
-    locationBtnEl.setAttribute(
-      "class",
-      "btn btn-primary text-start history-btn"
-    );
-    locationBtnEl.textContent = storedCity.city;
-    searchHistoryContainer.appendChild(locationBtnEl);
-    locationBtnEl.addEventListener("click", () => {
-      weatherNow(storedCity.lat, storedCity.lon);
-      weatherForecast(storedCity.lat, storedCity.lon);
-    });
-  }
-}
-
-function savedWeather() {
-  let storedCity = JSON.parse(localStorage.getItem("Vero Beach"));
-  console.log("Default City Location:");
-  console.log(storedCity);
-  weatherNow(storedCity.lat, storedCity.lon);
-  weatherForecast(storedCity.lat, storedCity.lon);
-}
-
-savedWeather();
-getStorage();
-citySearchBtn.addEventListener("click", retrieveLocation);
