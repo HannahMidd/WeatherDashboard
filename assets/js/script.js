@@ -22,8 +22,6 @@ function weatherNow(lat, lon) {
       let currentWeatherData = {
         city: data.name,
         currentTemp: data.main.temp,
-        maxDayTemp: data.main.temp_max,
-        minDayTemp: data.main.temp_min,
         humidity: data.main.humidity,
         weatherDesc: data.weather[0].description,
         weatherIcon: data.weather[0].icon,
@@ -58,8 +56,6 @@ function currentWeatherCard(weatherData) {
   // Create & append new data to current weather box:
   let weatherContainer = document.createElement("div");
   let weatherTitle = document.createElement("p");
-  let tempTitle = document.createElement("p");
-  let minMaxTempText = document.createElement("p");
   let windText = document.createElement("p");
   let humidityText = document.createElement("p");
   let weatherIcon = document.createElement("img");
@@ -69,15 +65,12 @@ function currentWeatherCard(weatherData) {
   );
 
   tempTitle.textContent = `Temp: ${weatherData.currentTemp}F`;
-  minMaxTempText.textContent = `Max Temp: ${weatherData.maxDayTemp}F, 
-   Min Temp: ${weatherData.minDayTemp}F`;
   windText.textContent = `Wind: ${weatherData.wind}mph`;
   humidityText.textContent = `Humidity: ${weatherData.humidity}%`;
 
   weatherContainer.appendChild(weatherIcon);
   weatherContainer.appendChild(weatherTitle);
   weatherContainer.appendChild(tempTitle);
-  weatherContainer.appendChild(minMaxTempText);
   weatherContainer.appendChild(windText);
   weatherContainer.appendChild(humidityText);
   today.children[0].appendChild(weatherContainer);

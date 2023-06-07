@@ -4,12 +4,13 @@
   --color-3: #0096c7;
   --color-4: #0077b6;
   --color-5: #023e8a;
-  --color-6: #03045e;
+  --color-6: #0c0fac;
+  --color-7: whitesmoke;
 }
 
 /* Applies to "Weather Dashboard" Header */
 header {
-  color: var(--color-6);
+  color: var(--color-7);
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
   padding: 15px;
   display: flex;
@@ -19,7 +20,7 @@ header {
 /* Applies to "Searcg for a City: text */
 .CitySearch {
   padding: 5px;
-  color: var(--color-6);
+  color: var(--color-7);
   display: flex;
   justify-content: center;
 }
@@ -29,22 +30,35 @@ form {
   display: flex;
   flex-direction: column;
   width: 200px;
+  
 }
 button {
   margin-top: 10px;
   width: 200px;
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
+  color: var(--color-7);
 }
 
 #CitySearch {
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
   width: 600px;
+  height: 75px;
   display: flex;
   justify-content: center;
+  color: var(--color-7);
+
+  
 }
 
 #today {
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
+  color: var(--color-7);
+  border: solid 2px black;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
 
 }
 
@@ -82,4 +96,26 @@ button {
   margin-top: 30px;
   margin-left: 30px;
   width: 270px;
+}
+
+/* 5 Day forecast style */
+#day1 {
+  background-color: var(--color-1);
+  color: whitesmoke;
+}
+#day2 {
+  background-color: var(--color-2);
+  color: whitesmoke;
+}
+#day3 {
+  background-color: var(--color-3);
+  color: whitesmoke;
+}
+#day4 {
+  background-color: var(--color-4);
+  color: whitesmoke;
+}
+#day5 {
+  background-color: var(--color-5);
+  color: whitesmoke;
 }
