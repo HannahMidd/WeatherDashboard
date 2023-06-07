@@ -40,11 +40,12 @@ button {
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
   width: 600px;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 #today {
   background: linear-gradient(to bottom, #00b4d8, #023e8a);
+
 }
 
 .ForecastBox {
@@ -70,6 +71,8 @@ button {
 
 .card {
   border: solid 2px black;
+  width: 180px;
+  margin-top: 10px;
 }
 
 .SearchAndHistorySection {

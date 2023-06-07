@@ -4,6 +4,7 @@ const searchInput = document.querySelector("#search-input");
 const weatherMainURL = "https://api.openweathermap.org";
 
 const citySearchBtn = document.querySelector("#citySearchBtn");
+const citySearchTitle = document.querySelector("#citySearch");
 const today = document.querySelector("#today");
 const todayWeather = today.children[0];
 const forecastContainer = document.querySelector("#forecast");
@@ -45,7 +46,7 @@ function currentWeatherText(weatherData) {
   console.log(weatherData);
 
   //Show City name & current day
-  searchInput.textContent = weatherData.city;
+  citySearchTitle.textContent = weatherData.city;
   let today = dayjs().format("DD MMM, YYYY");
   let currentHour = dayjs().format("h A");
   todayWeather.textContent = `Current Weather Today, ${today}, at ${currentHour}`;
