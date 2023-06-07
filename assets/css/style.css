@@ -1,3 +1,4 @@
+/* Root variables to apply across the app */
 :root {
   --color-1: #48cae4;
   --color-2: #00b4d8;
@@ -20,8 +21,14 @@ header {
 }
 
 /* Applies to "Search for a City: text */
-#CitySearchTitle {
+#citySearchTitle {
   padding: 5px;
+  color: whitesmoke;
+
+}
+
+#citySearchBtn {
+  color: whitesmoke;
 
 }
 
@@ -46,28 +53,35 @@ button:hover {
   color: var(--color-7);
 }
 
+/* Applies to the Current & 5 Day Heading */
+#currentFiveHeading {
+  color: var(--color-7);
+
+
+}
 /* Applies to city in the large top of screen */
 #CitySearch {
-  background-color: var(--color-3);
   width: 600px;
   height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--color-7); 
-  border: solid 2px black;
+
 }
 
 /* Applies to the weather now section */
 #today {
-  background-color: var(--color-3);
   color: var(--color-7);
-  border: solid 2px black;
   padding: 10px;
   width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center !important;
+   border: solid 2px black;
+   background-color: var(--color-3);
+  width: 180px;
+  margin: 20px;
 }
 
 
@@ -81,6 +95,9 @@ button:hover {
   align-items: center;
   border: solid 2px black;
   padding: 10px;
+  background-color: var(--color-5);
+  width: 525%;
+  
 }
 
 /* Makes Search and Result box inline */
@@ -93,6 +110,8 @@ button:hover {
   display: flex;
   flex-direction: row;
  justify-content: center;
+ display: flex;
+ justify-content: space-evenly;
 }
 
 /* Applies to each individual weather card */
@@ -110,6 +129,11 @@ button:hover {
   margin-top: 30px;
   margin-left: 30px;
   width: 270px;
+  background-color: var(--color-6);
+}
+
+#RecentSearchTitle {
+  color: whitesmoke;
 }
 
 /* 5 Day forecast style by card */
