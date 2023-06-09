@@ -2,7 +2,7 @@
 
 ## Description
 
-The Weather Dashboard can be accessed at the following URL: https://hannahmidd.github.io/CodingQuiz/
+The Weather Dashboard can be accessed at the following URL: https://hannahmidd.github.io/WeatherDashboard/
 
 This weather application will allow users to view the current weather in their desired location, along with the 5 day forecast for temperature, wind and humidity. 
 

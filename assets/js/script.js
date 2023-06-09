@@ -1,20 +1,20 @@
 //------------------------ Global Variables to be used ---------------------
 const weatherApiKey = "01c2f043e94a1460b1f6d351b9f98ce6";
-const searchInput = document.querySelector("#search-input");
+const formEl = document.querySelector("#search-form");
 const weatherMainURL = "https://api.openweathermap.org";
 
 const citySearchBtn = document.querySelector("#citySearchBtn");
-const searchedCity = document.querySelector("#search-input");
+const cityEl = document.querySelector("#search-input");
 const today = document.querySelector("#today");
 const todayWeather = today.children[0];
 const forecastContainer = document.querySelector("#forecast");
 const searchHistoryContainer = document.querySelector("#history");
-const searchHistory = [];
+let historyArr = [];
 
 // --------------------- Fetch weather data from API------------------------------------------
-function weatherNow(lat, lon) {
+function weatherNow(city) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${weatherApiKey}`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherApiKey}`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -28,11 +28,7 @@ function weatherNow(lat, lon) {
       };
       currentWeatherText(currentWeatherData);
 
-      // Store location data to local storage
-      localStorage.setItem(data.name, JSON.stringify({ lat: lat, lon: lon }));
-
       // Grab current weather & future 5-day weather
-      weatherNow(data.lat, data.lon);
       weatherForecast(data.lat, data.lon);
     });
 }
@@ -43,7 +39,7 @@ function currentWeatherText(weatherData) {
   console.log(weatherData);
 
   //Show City name & current day
-  searchedCity.textContent = weatherData.city;
+  cityEl.textContent = weatherData.city;
   let today = dayjs().format("DD MMM, YYYY");
   let currentHour = dayjs().format("h A");
   todayWeather.textContent = `Current Weather Today, ${today}, at ${currentHour}`;
@@ -128,35 +124,39 @@ function weatherForecast(lat, lon) {
 }
 
 function getStorage() {
-  for (i = 0; i < localStorage.length; i++) {
-    let savedCity = JSON.parse(localStorage.getItem(localStorage.key(i)));
+  historyArr = JSON.parse(localStorage.getItem("stored-history")) || [];
+}
+
+// Repopulate the page, temp commenting out
+function savedWeather() {
+  //   let savedCity = JSON.parse(localStorage.getItem("Vero-Beach"));
+  //   console.log("Default City Location:");
+  //   console.log(savedCity);
+  //   weatherNow(savedCity.lat, savedCity.lon);
+  //   weatherForecast(savedCity.lat, savedCity.lon);
+}
+
+function renderButtons() {
+  for (var i = 0; i < historyArr.length; i++) {
+    let savedCity = historyArr[i];
     let locationBtnEl = document.createElement("button");
     locationBtnEl.setAttribute(
       "class",
       "btn btn-primary text-start history-btn"
     );
-    locationBtnEl.textContent = savedCity.city;
+
+    locationBtnEl.textContent = savedCity;
     searchHistoryContainer.appendChild(locationBtnEl);
-    locationBtnEl.addEventListener("click", () => {
-      weatherNow(savedCity.lat, savedCity.lon);
-      weatherForecast(savedCity.lat, savedCity.lon);
+    locationBtnEl.addEventListener("click", (event) => {
+      weatherNow(event.target.textContent);
     });
   }
 }
 
-function savedWeather() {
-  let savedCity = JSON.parse(localStorage.getItem("Vero Beach"));
-  console.log("Default City Location:");
-  console.log(savedCity);
-  weatherNow(savedCity.lat, savedCity.lon);
-  weatherForecast(savedCity.lat, savedCity.lon);
-}
-
-
 // Calling the functions
 savedWeather();
 getStorage();
-citySearchBtn.addEventListener("click", getLocation);
+renderButtons();
 
 // Apply the data to the cards!!!
 function forecastWeatherCard(weatherData) {
@@ -186,3 +186,11 @@ function forecastWeatherCard(weatherData) {
     weatherContainer
   );
 }
+
+formEl.addEventListener("submit", function (event) {
+  event.preventDefault();
+  console.log(cityEl.value);
+  weatherNow(cityEl.value);
+});
+
+// data[0]
