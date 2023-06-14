@@ -60,7 +60,7 @@ button:hover {
 
 }
 /* Applies to city in the large top of screen */
-#CitySearch {
+#TopofPageCity {
   width: 600px;
   height: 75px;
   display: flex;

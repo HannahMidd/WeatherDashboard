@@ -6,6 +6,7 @@ const weatherMainURL = "https://api.openweathermap.org";
 const citySearchBtn = document.querySelector("#citySearchBtn");
 const cityEl = document.querySelector("#search-input");
 const today = document.querySelector("#today");
+const topOfPageCityEl = document.querySelector("#TopofPageCity");
 
 const forecastContainer = document.querySelector("#forecast");
 const searchHistoryContainer = document.querySelector("#history");
@@ -37,6 +38,8 @@ function currentWeatherText(weatherData) {
   console.log(today.children)
   today.children[0].textContent = `Current Weather Today, ${date}, at ${currentHour}`;
   currentWeatherCard(weatherData);
+  // Update top of page with City
+  topOfPageCityEl.textContent = cityEl.value;
 }
 
 // current weather card
