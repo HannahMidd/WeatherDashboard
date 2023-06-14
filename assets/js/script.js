@@ -6,7 +6,7 @@ const weatherMainURL = "https://api.openweathermap.org";
 const citySearchBtn = document.querySelector("#citySearchBtn");
 const cityEl = document.querySelector("#search-input");
 const today = document.querySelector("#today");
-const todayWeather = today.children[0];
+
 const forecastContainer = document.querySelector("#forecast");
 const searchHistoryContainer = document.querySelector("#history");
 let historyArr = [];
@@ -19,17 +19,9 @@ function weatherNow(city) {
     .then((response) => response.json())
     .then((data) => {
       console.log("Woooo! We have weather data!", data);
-      let currentWeatherData = {
-        city: data.name,
-        currentTemp: data.main.temp,
-        humidity: data.main.humidity,
-        weatherIcon: data.weather[0].icon,
-        wind: data.wind.speed,
-      };
-      currentWeatherText(currentWeatherData);
 
       // Grab current weather & future 5-day weather
-      weatherForecast(data.lat, data.lon);
+      weatherForecast(data[0].lat, data[0].lon);
     });
 }
 
@@ -40,35 +32,24 @@ function currentWeatherText(weatherData) {
 
   //Show City name & current day
   cityEl.textContent = weatherData.city;
-  let today = dayjs().format("DD MMM, YYYY");
+  let date = dayjs().format("DD MMM, YYYY");
   let currentHour = dayjs().format("h A");
-  todayWeather.textContent = `Current Weather Today, ${today}, at ${currentHour}`;
+  console.log(today.children)
+  today.children[0].textContent = `Current Weather Today, ${date}, at ${currentHour}`;
   currentWeatherCard(weatherData);
 }
 
 // current weather card
 function currentWeatherCard(weatherData) {
   // Create & append new data to current weather box:
-  let weatherContainer = document.createElement("div");
-  let weatherTitle = document.createElement("p");
-  let windText = document.createElement("p");
-  let humidityText = document.createElement("p");
-  let weatherIcon = document.createElement("img");
-  weatherIcon.setAttribute(
-    "src",
-    `https://openweathermap.org/img/w/${weatherData.weatherIcon}.png`
-  );
 
-  tempTitle.textContent = `Temp: ${weatherData.currentTemp}F`;
-  windText.textContent = `Wind: ${weatherData.wind}mph`;
-  humidityText.textContent = `Humidity: ${weatherData.humidity}%`;
 
-  weatherContainer.appendChild(weatherIcon);
-  weatherContainer.appendChild(weatherTitle);
-  weatherContainer.appendChild(tempTitle);
-  weatherContainer.appendChild(windText);
-  weatherContainer.appendChild(humidityText);
-  today.children[0].appendChild(weatherContainer);
+  today.children[2].textContent = `Temp: ${weatherData.currentTemp}F`;
+  today.children[3].textContent = `Wind: ${weatherData.wind}mph`;
+  today.children[4].textContent = `Humidity: ${weatherData.humidity}%`;
+  today.children[1].src = `https://openweathermap.org/img/w/${weatherData.weatherIcon}.png`;
+
+
 }
 
 // Fetch our 5 day forecast
@@ -80,6 +61,16 @@ function weatherForecast(lat, lon) {
     .then((data) => {
       console.log(`5 Day Weather Forecast`);
       console.log(data);
+
+      let currentWeatherData = {
+        city: data.city.name,
+        currentTemp: data.list[0].main.temp,
+        humidity: data.list[0].main.humidity,
+        weatherIcon: data.list[0].weather[0].icon,
+        wind: data.list[0].wind.speed,
+      };
+      currentWeatherText(currentWeatherData);
+
       let fiveDayForecast = [
         {
           time: dayjs(data.list[2].dt_txt).format("DD MMM, YYYY"),
@@ -127,14 +118,14 @@ function getStorage() {
   historyArr = JSON.parse(localStorage.getItem("stored-history")) || [];
 }
 
-// Repopulate the page, temp commenting out
-function savedWeather() {
-  //   let savedCity = JSON.parse(localStorage.getItem("Vero-Beach"));
-  //   console.log("Default City Location:");
-  //   console.log(savedCity);
-  //   weatherNow(savedCity.lat, savedCity.lon);
-  //   weatherForecast(savedCity.lat, savedCity.lon);
-}
+// Repopulate the page - temp commenting out
+// function savedWeather() {
+//     let savedCity = JSON.parse(localStorage.getItem("Vero-Beach"));
+//     console.log("Default City Location:");
+//     console.log(savedCity);
+//     weatherNow(savedCity.lat, savedCity.lon);
+//     weatherForecast(savedCity.lat, savedCity.lon);
+// }
 
 function renderButtons() {
   for (var i = 0; i < historyArr.length; i++) {
@@ -154,7 +145,7 @@ function renderButtons() {
 }
 
 // Calling the functions
-savedWeather();
+// savedWeather();
 getStorage();
 renderButtons();
 
@@ -192,5 +183,3 @@ formEl.addEventListener("submit", function (event) {
   console.log(cityEl.value);
   weatherNow(cityEl.value);
 });
-
-// data[0]
